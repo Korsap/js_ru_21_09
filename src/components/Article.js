@@ -26,7 +26,7 @@ class Article extends Component {
     render() {
         const {article, isOpen, onButtonClick} = this.props;
         const body = isOpen && <section>{article.text}</section>;
-        console.log('---', isOpen);
+        //console.log('---', isOpen);
         return (
             <div>
                 <h2>
@@ -36,14 +36,16 @@ class Article extends Component {
                     </button>
                 </h2>
                 {body}
-                <h3>creation date: {(new Date(article.date)).toDateString()}</h3>
+                <h3>Creation date: {(new Date(article.date)).toDateString()}</h3>
                 <h4>
                     Comments:
-                    <button>
+					<button>
 
-                    </button>
-                    <CommentList comments={article.comments}/>
+					</button>
                 </h4>
+                <section>
+                    <CommentList comments={article.comments} />
+                </section>
             </div>
         );
     };

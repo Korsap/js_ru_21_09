@@ -4,26 +4,36 @@ import Comment from './Comment';
 
 class CommentList extends Component {
 	static  defaultProps = {
-		comments: null,
-		isCommentOpen: false,
-		onCommentClick: () => null
+		comments: [],
+		isCommentListOpen: false,
+		onCommentListClick: () => null
 	};
 	static propTypes = {
 		comments: PropTypes.array.isRequired,
-		isCommentOpen: PropTypes.bool,
-		onCommentClick: PropTypes.func
+		isCommentListOpen: PropTypes.bool,
+		onCommentListClick: PropTypes.func
+	};
+
+	state = {
+		openCommentId: null
 	};
 
 	render(){
-		const {comments, isCommentOpen, onCommentClick} = this.props;
-		if (!comments.length) return <h3>No Articles</h3>;
+		const {comments, isCommentListOpen, onCommentListClick} = this.props;
+		console.log("---", comments);
+
+		if (!comments.length) return <section>No comments yet</section>;
+
 		const commentElements = comments.map((comment) =>
 			<li key={comment.id}>
 				<Comment comment={comment} />
 			</li>);
+
+		const commentList = isCommentListOpen && commentElements;
+
 		return(
 			<ul>
-				{commentElements}
+				{commentList}
 			</ul>
 		);
 
