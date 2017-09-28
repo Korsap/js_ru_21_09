@@ -14,12 +14,10 @@ class CommentList extends Component {
 		onCommentListClick: PropTypes.func
 	};
 
-	state = {
-		openCommentId: null
-	};
+
 
 	render(){
-		const {comments, isCommentListOpen, onCommentListClick} = this.props;
+		const {comments, articleId, isCommentListOpen, onCommentListClick} = this.props;
 		console.log("---", comments);
 
 		if (!comments.length) return <section>No comments yet</section>;
@@ -32,9 +30,17 @@ class CommentList extends Component {
 		const commentList = isCommentListOpen && commentElements;
 
 		return(
-			<ul>
-				{commentList}
-			</ul>
+			<div>
+				<h3>
+					Comments:
+					<button onClick={onCommentListClick}>
+						{isCommentListOpen ? 'close' : 'open'}
+					</button>
+				</h3>
+				<ul>
+					{commentList}
+				</ul>
+			</div>
 		);
 
 	}

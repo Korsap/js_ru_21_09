@@ -23,6 +23,10 @@ class Article extends Component {
         onButtonClick: PropTypes.func
     };
 
+	state = {
+		openArticleId: null
+	};
+
     render() {
         const {article, isOpen, onButtonClick} = this.props;
         const body = isOpen && <section>{article.text}</section>;
@@ -36,19 +40,23 @@ class Article extends Component {
                     </button>
                 </h2>
                 {body}
-                <h3>Creation date: {(new Date(article.date)).toDateString()}</h3>
-                <h4>
-                    Comments:
-					<button>
+                <h4>Creation date: {(new Date(article.date)).toDateString()}</h4>
 
-					</button>
-                </h4>
-                <section>
-                    <CommentList comments={article.comments} />
-                </section>
+                    <CommentList comments={article.comments}
+								 articleId={article.id}
+								 isCommentListOpen={article.id === this.state.openArticleId}
+								 onCommentListClick={this.toggleComments(article.id)}
+					/>
             </div>
         );
     };
+
+	toggleComments = (openArticleId) => () => {
+		this.setState({openArticleId});
+		const id = this.state.openArticleId === openArticleId ? null : openArticleId;
+		this.setState({openArticleId: id});
+	}
+
 }
 
 

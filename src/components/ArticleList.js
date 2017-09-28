@@ -20,8 +20,8 @@ class ArticleList extends Component {
         const articleElements = articles.map((article) =>
             <li key={article.id}>
             	<Article article={article}
-                     isOpen={article.id === this.state.openArticleId}
-                     onButtonClick={this.toggleArticle(article.id)}
+                     	isOpen={article.id === this.state.openArticleId}
+                     	onButtonClick={this.toggleArticle(article.id)}
             	/>
         	</li>);
         return (
@@ -33,6 +33,8 @@ class ArticleList extends Component {
 
     toggleArticle = (openArticleId) => () => {
         this.setState({openArticleId});
+        const id = this.state.openArticleId === openArticleId ? null : openArticleId;
+        this.setState({openArticleId: id});
     }
 }
 
