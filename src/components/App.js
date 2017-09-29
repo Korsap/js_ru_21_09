@@ -1,6 +1,6 @@
-import React from 'react'
-import ArticleList from './ArticleList'
-import articles from '../fixtures'
+import React from 'react';
+import ArticleList from './ArticleList';
+import articles from '../fixtures';
 
 function App() {
     return (
@@ -8,7 +8,7 @@ function App() {
             <h1>App name</h1>
             <ArticleList articles={articles} />
         </div>
-    )
+    );
 }
 
-export default App
+export default App;

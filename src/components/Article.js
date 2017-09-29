@@ -1,11 +1,11 @@
-import React, {Component, PureComponent} from 'react'
-import PropTypes from 'prop-types'
-import CommentList from './CommentList'
+import React, {Component, PureComponent} from 'react';
+import PropTypes from 'prop-types';
+import CommentList from './CommentList';
 
 class Article extends PureComponent {
     static defaultProps = {
 
-    }
+    };
 
     static propTypes = {
         article: PropTypes.shape({
@@ -15,20 +15,20 @@ class Article extends PureComponent {
         }).isRequired,
         isOpen: PropTypes.bool,
         onClick: PropTypes.func
-    }
+    };
 
     state = {
         clicked: 0
-    }
+    };
 
     render() {
-        const {article, isOpen, onButtonClick} = this.props
+        const {article, isOpen, onButtonClick} = this.props;
         const body = isOpen && (
             <div>
                 <section>{article.text}</section>
                 <CommentList comments = {article.comments}/>
             </div>
-        )
+        );
         return (
             <div>
                 <h2 ref = {this.setHeaderRef}>
@@ -41,18 +41,18 @@ class Article extends PureComponent {
                 {body}
                 <h3>creation date: {(new Date(article.date)).toDateString()}</h3>
             </div>
-        )
-    }
+        );
+    };
 
     setHeaderRef = header => {
         this.header = header
         console.log('---', this.header)
-    }
+    };
 
     increment = () => this.setState({
         clicked: this.state.clicked + 1
-    })
+    });
 }
 
 
-export default Article
+export default Article;
