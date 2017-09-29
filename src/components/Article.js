@@ -4,13 +4,7 @@ import CommentList from './CommentList';
 
 class Article extends Component {
     static defaultProps = {
-			article: PropTypes.shape({
-				title: 'Title',
-				text: 'Text',
-				date: '1970-01-01T00:00:00.000Z'
-			}).isRequired,
-			isOpen: false,
-			onButtonClick: () => null
+
     };
 
     static propTypes = {
@@ -29,34 +23,28 @@ class Article extends Component {
 
     render() {
         const {article, isOpen, onButtonClick} = this.props;
-        const body = isOpen && <section>{article.text}</section>;
+		const body = isOpen && (
+			<div>
+				<section>{article.text} </section>
+				<CommentList comments={article.comments} />
+			</div>
+			);
+
         //console.log('---', isOpen);
+
         return (
             <div>
                 <h2>
-                    {article.title}
+                    {article.title}&nbsp;
                     <button onClick={onButtonClick}>
-                        {isOpen ? 'hide' : 'show'}
+                        {isOpen ? 'Hide' : 'Show'}
                     </button>
                 </h2>
                 {body}
-                <h4>Creation date: {(new Date(article.date)).toDateString()}</h4>
-
-                    <CommentList comments={article.comments}
-								 articleId={article.id}
-								 isCommentListOpen={article.id === this.state.openArticleId}
-								 onCommentListClick={this.toggleComments(article.id)}
-					/>
+                <h3>Creation date: {(new Date(article.date)).toDateString()}</h3>
             </div>
         );
     };
-
-	toggleComments = (openArticleId) => () => {
-		this.setState({openArticleId});
-		const id = this.state.openArticleId === openArticleId ? null : openArticleId;
-		this.setState({openArticleId: id});
-	}
-
 }
 
 

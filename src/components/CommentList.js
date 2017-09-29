@@ -4,46 +4,52 @@ import Comment from './Comment';
 
 class CommentList extends Component {
 	static  defaultProps = {
-		comments: [],
-		isCommentListOpen: false,
-		onCommentListClick: () => null
+		comments: []
 	};
 	static propTypes = {
 		comments: PropTypes.array.isRequired,
-		isCommentListOpen: PropTypes.bool,
-		onCommentListClick: PropTypes.func
 	};
 
-
+	state = {
+		isOpen: false
+	};
 
 	render(){
-		const {comments, articleId, isCommentListOpen, onCommentListClick} = this.props;
-		console.log("---", comments);
-
-		if (!comments.length) return <section>No comments yet</section>;
-
-		const commentElements = comments.map((comment) =>
-			<li key={comment.id}>
-				<Comment comment={comment} />
-			</li>);
-
-		const commentList = isCommentListOpen && commentElements;
-
+		console.log('---', this.state.isOpen);
 		return(
 			<div>
-				<h3>
-					Comments:
-					<button onClick={onCommentListClick}>
-						{isCommentListOpen ? 'hide' : 'show'}
-					</button>
-				</h3>
-				<ul>
-					{commentList}
-				</ul>
+				<button onClick={this.toggleClick}>
+					{this.state.isOpen ? 'Hide comments' : 'Show comments'}
+				</button>
+				{this.getBody()}
 			</div>
 		);
 
 	}
+
+	getBody(){
+		if(!this.state.isOpen) return null;
+		const {comments} = this.props;
+		const body = comments.length ? (
+				<ul>
+					{comments.map((comment) =>
+					<li key={comment.id}>
+						<Comment comment={comment}/>
+					</li>)}
+				</ul>
+
+		) : <b>No comments yet</b>;
+
+		return (
+			<div>
+				{body}
+			</div>
+		)
+	}
+
+	toggleClick = () => this.setState({
+		isOpen: !this.state.isOpen
+	})
 }
 
 export default CommentList;
