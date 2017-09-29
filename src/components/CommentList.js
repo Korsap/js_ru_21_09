@@ -34,7 +34,7 @@ class CommentList extends Component {
 				<h3>
 					Comments:
 					<button onClick={onCommentListClick}>
-						{isCommentListOpen ? 'close' : 'open'}
+						{isCommentListOpen ? 'hide' : 'show'}
 					</button>
 				</h3>
 				<ul>

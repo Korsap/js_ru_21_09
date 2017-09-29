@@ -36,7 +36,7 @@ class Article extends Component {
                 <h2>
                     {article.title}
                     <button onClick={onButtonClick}>
-                        {isOpen ? 'close' : 'open'}
+                        {isOpen ? 'hide' : 'show'}
                     </button>
                 </h2>
                 {body}
