@@ -1,10 +1,10 @@
-import React, {Component} from 'react';
+import React from 'react';
 import Comment from './Comment';
 import PropTypes from 'prop-types';
 import toggleOpen from '../decorators/toggleOpen';
 
 function CommentList(props) {
-    const {comments, isOpen, toggleOpen} = props;
+    const {isOpen, toggleOpen} = props;
     const text = isOpen ? 'hide comments' : 'show comments';
     return (
         <div>

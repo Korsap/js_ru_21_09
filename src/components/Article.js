@@ -45,7 +45,7 @@ class Article extends PureComponent {
     };
 
     setHeaderRef = header => {
-        this.header = header
+        this.header = header;
         console.log('---', this.header)
     };
 
