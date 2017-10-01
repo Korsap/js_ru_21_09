@@ -1,28 +1,23 @@
-import React, {Component} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Article from './Article';
 import articleSwitcher from "../decorators/articleSwitcher";
 
-class ArticleList extends Component {
-
-
-    render() {
-        const {articles, currentId, articleSwitcher} = this.props;
-        if (!articles.length) return <h3>No Articles</h3>;
-        const articleElements = articles.map((article) => <li key={article.id}>
-            <Article article={article}
-                     isOpen={article.id === currentId}
-                     onButtonClick={articleSwitcher(article.id)}
-            />
-        </li>);
-        return (
-            <ul>
-                {articleElements}
-            </ul>
-        );
-    }
+function ArticleList(props) {
+    const {articles, currentId, articleSwitcher} = props;
+    if (!articles.length) return <h3>No Articles</h3>;
+    const articleElements = articles.map((article) => <li key={article.id}>
+        <Article article={article}
+                 isOpen={article.id === currentId}
+                 onButtonClick={articleSwitcher(article.id)}
+        />
+    </li>);
+    return (
+        <ul>
+            {articleElements}
+        </ul>
+    );
 }
-
 
 ArticleList.defaultProps = {
     articles: []

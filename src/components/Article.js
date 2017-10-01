@@ -1,4 +1,4 @@
-import React, {Component, PureComponent} from 'react';
+import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import CommentList from './CommentList';
 
@@ -14,7 +14,7 @@ class Article extends PureComponent {
             date: PropTypes.string.isRequired
         }).isRequired,
         isOpen: PropTypes.bool,
-        onClick: PropTypes.func
+        onButtonClick: PropTypes.func
     };
 
     state = {
@@ -53,6 +53,5 @@ class Article extends PureComponent {
         clicked: this.state.clicked + 1
     });
 }
-
 
 export default Article;
