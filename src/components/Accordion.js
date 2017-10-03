@@ -1,25 +1,24 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class Toggler extends Component {
     state = {
         openItemId: null
-    }
+    };
 
+	memorizedTogglers = new Map();
     toggleOpenItem = openItemId => ev => {
         this.setState({
             openItemId: openItemId === this.state.openItemId ? null : openItemId
-        })
-    }
+        });
+    };
 
-    toggleOpenItemMemoized = (openItemId) => {
-        if (this.memoizedTogglers.get(openItemId)) return this.memoizedTogglers.get(openItemId)
-        const toggler = this.toggleOpenItem(openItemId)
-        this.memoizedTogglers.set(openItemId, toggler)
-        return toggler
-    }
-
-    memoizedTogglers = new Map()
+    toggleOpenItemMemorized = (openItemId) => {
+        if (this.memorizedTogglers.get(openItemId)) return this.memorizedTogglers.get(openItemId);
+        const toggler = this.toggleOpenItem(openItemId);
+        this.memorizedTogglers.set(openItemId, toggler);
+        return toggler;
+    };
 }
 
-export default Toggler
+export default Toggler;

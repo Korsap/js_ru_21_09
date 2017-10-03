@@ -1,14 +1,14 @@
-import React, {Component, PureComponent} from 'react'
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
-import PropTypes from 'prop-types'
-import CommentList from '../CommentList'
-import {findDOMNode} from 'react-dom'
-import './style.css'
+import React, {PureComponent} from 'react';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import PropTypes from 'prop-types';
+import CommentList from '../CommentList';
+import {findDOMNode} from 'react-dom';
+import './style.css';
 
 class Article extends PureComponent {
     static defaultProps = {
 
-    }
+    };
 
     static propTypes = {
         article: PropTypes.shape({
@@ -18,16 +18,16 @@ class Article extends PureComponent {
         }).isRequired,
         isOpen: PropTypes.bool,
         onClick: PropTypes.func
-    }
+    };
 
     state = {
         clicked: 0
-    }
+    };
 
     render() {
-        const {article, isOpen, onButtonClick} = this.props
+        const {article, isOpen, onButtonClick} = this.props;
 
-        if (this.state.clicked > 3) throw new Error('clicked more then 3 times')
+        if (this.state.clicked > 3) throw new Error('clicked more then 3 times');
 
         return (
             <div>
@@ -48,26 +48,26 @@ class Article extends PureComponent {
                 </ReactCSSTransitionGroup>
                 <h3>creation date: {(new Date(article.date)).toDateString()}</h3>
             </div>
-        )
+        );
     }
 
     getBody() {
-        const {isOpen, article} = this.props
+        const {isOpen, article} = this.props;
 
-        if (!isOpen) return null
+        if (!isOpen) return null;
 
         return (
             <div>
                 <section>{article.text}</section>
                 <CommentList comments = {article.comments} ref = {this.setCommentsRef} key = {this.state.clicked}/>
             </div>
-        )
+        );
     }
 
     setHeaderRef = header => {
         this.header = header
 //        console.log('---', this.header)
-    }
+    };
 
     setCommentsRef = comments => {
         this.comments = comments
@@ -77,12 +77,12 @@ class Article extends PureComponent {
         }, 500)
 */
 //        console.log('---', 'comments', comments, findDOMNode(comments))
-    }
+    };
 
     increment = () => this.setState({
         clicked: this.state.clicked + 1
-    })
+    });
 }
 
 
-export default Article
+export default Article;
