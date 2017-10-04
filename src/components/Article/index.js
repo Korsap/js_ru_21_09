@@ -46,7 +46,7 @@ class Article extends PureComponent {
                 >
                     {this.getBody()}
                 </ReactCSSTransitionGroup>
-                <h3>creation date: {(new Date(article.date)).toDateString()}</h3>
+                <h3>creation date: {(new Date(article.date)).toLocaleDateString()}</h3>
             </div>
         );
     }

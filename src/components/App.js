@@ -37,7 +37,7 @@ class App extends Component {
 
     handleUserChange = ev => {
         if (ev.target.value.length > 10) return this.setState({
-            username: 'shit'
+            username: ''
         });
 
         this.setState({

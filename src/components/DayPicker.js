@@ -10,17 +10,6 @@ class Calendar extends Component {
 
 	render(){
 		const {from, to} = this.state;
-		let dateOptions = {
-			era: null,
-			year: 'numeric',
-			month: 'short',
-			day: 'numeric',
-			weekday: null,
-			timezone: 'UTC',
-			hour: null,
-			minute: null,
-			second: null
-		};
 		return(
 			<div>
 				{!from && !to && <p>Please select the <strong>first day</strong>.</p>}
@@ -29,11 +18,11 @@ class Calendar extends Component {
 					<p>
 						You chose from
 						{' '}
-						<strong>{(new Date(from)).toLocaleDateString(dateOptions)}</strong>
+						<strong>{(new Date(from)).toLocaleDateString()}</strong>
 						{' '}
 						to
 						{' '}
-						<strong>{(new Date(to)).toLocaleDateString(dateOptions)}</strong>
+						<strong>{(new Date(to)).toLocaleDateString()}</strong>
 						.
 						{' '}<a href="" onClick={this.handleResetClick}>Reset</a>
 					</p>}
