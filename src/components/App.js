@@ -3,6 +3,7 @@ import Select from 'react-select';
 import ArticleList from './ArticleList';
 import ArticlesChart from './ArticlesChart';
 import 'react-select/dist/react-select.css';
+import Calendar from './DayPicker';
 
 class App extends Component {
     state = {
@@ -23,6 +24,7 @@ class App extends Component {
         return (
             <div>
                 <h1>App name</h1>
+				<Calendar />
                 User: <input type = 'text' value = {username} onChange = {this.handleUserChange}/>
                 <Select options={options} value={selected} onChange={this.handleChange} multi />
                 <ArticleList articles={articles}/>
@@ -35,7 +37,7 @@ class App extends Component {
 
     handleUserChange = ev => {
         if (ev.target.value.length > 10) return this.setState({
-            username: ''
+            username: 'shit'
         });
 
         this.setState({
