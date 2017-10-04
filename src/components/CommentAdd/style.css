@@ -1,0 +1,11 @@
+textarea {
+	width: 500px;
+	height: 100px;
+
+
+}
+
+.textarea--red {
+	color: purple;
+	border-color:  red;
+}

@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Comment from '../Comment';
 import PropTypes from 'prop-types';
 import toggleOpen from '../../decorators/toggleOpen';
+import CommentAdd from '../CommentAdd'
 import './style.css';
 
 class CommentList extends Component {
@@ -41,9 +42,7 @@ class CommentList extends Component {
 		return (
 			<div>
 				{body}
-				<p><b>Create new comment:</b></p>
-				<p><textarea name="comment"/></p>
-				<p><button>Send</button></p>
+				<CommentAdd />
 			</div>
 		);
 	}
