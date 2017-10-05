@@ -24,6 +24,7 @@ class CommentAdd extends Component{
 	}
 
 	handleUserChange = ev => {
+		this.disableSending(this.state.username, ev.target.value.length);
 		if (ev.target.value.length > 10) return this.setState({
 			username: ''
 		});
@@ -34,6 +35,8 @@ class CommentAdd extends Component{
 	};
 
 	handleCommentChange = ev => {
+		console.log("====", this.state.username);
+		this.disableSending(ev.target.value.length);
 		if (ev.target.value.length < 10 || ev.target.value.length > 50) return this.setState({
 			style: 'textarea--red',
 			disabled: true
@@ -45,22 +48,21 @@ class CommentAdd extends Component{
 		});
 	};
 
-/*
+
 	disableSending = (dataLength) => {
-		if(dataLength || (dataLength < 10 || dataLength > 50)) setState({
-			disabled: true
+		let length = dataLength;
+		console.log('====', length);
+	};
+
+
+	clearForm = () => {
+		this.setState({
+			username: '',
+			commentText: ''
 		});
 
-		setState({
-			disabled: false
-		})
-	};
-*/
-
-	clearForm = () => this.setState({
-		username: '',
-		commentText: ''
-	})
+		console.log("----------", this.state);
+	}
 
 }
 
