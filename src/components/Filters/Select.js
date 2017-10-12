@@ -16,13 +16,12 @@ class SelectFilter extends Component {
             label: article.title,
             value: article.id
         }));
-		console.log('---', options);
 
         return <Select
             options={options}
             value={selected}
-            multi
             onChange={this.handleChange}
+			multi
         />;
     }
 
@@ -30,9 +29,9 @@ class SelectFilter extends Component {
 }
 function mapStateToProps(state) {
 	return {
-		selected: state.filters.select,
+		selected: state.filters.selected,
 		articles: state.articles
 	};
 }
 
-export default connect(mapStateToProps, { changeSelection })(SelectFilter);
+export default connect(mapStateToProps, { changeSelection } )(SelectFilter);
