@@ -1,18 +1,22 @@
-import React, {Component} from 'react'
-import PropTypes from 'prop-types'
-import Article from './Article'
-import Accordion from './Accordion'
-import {connect} from 'react-redux'
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
+import Article from './Article';
+import Accordion from './Accordion';
+import {connect} from 'react-redux';
 
 class ArticleList extends Accordion {
-    state = {
-        error: null
-    }
+    constructor() {
+    	super();
+		super.state = {
+			error: null
+		}
+	}
+
 
     render() {
-        const {articles} = this.props
-        if (this.state.error) return <h2>Error: {this.state.error.message}</h2>
-        if (!articles.length) return <h3>No Articles</h3>
+        const {articles} = this.props;
+        if (this.state.error) return <h2>Error: {this.state.error.message}</h2>;
+        if (!articles.length) return <h3>No Articles</h3>;
 
         const articleElements = articles.map((article) => <li key={article.id}>
             <Article article={article}
@@ -36,12 +40,20 @@ class ArticleList extends Accordion {
 
 ArticleList.defaultProps = {
     articles: []
-}
+};
 
 ArticleList.propTypes = {
     articles: PropTypes.array.isRequired
+};
+
+function mapStateToProps(state) {
+	const selected = state.filters.selected;
+	const filtratedArticles = state.articles.filter(article => {
+		return(!selected.length || selected.includes(article.id))
+	});
+	return {
+		articles: filtratedArticles
+	}
 }
 
-export default connect((state) => ({
-    articles: state.articles
-}))(ArticleList)
+export default connect(mapStateToProps)(ArticleList)
