@@ -46,9 +46,12 @@ class ArticleList extends Accordion {
 }
 
 function mapStateToProps(state) {
-	const selected = state.filters.selected;
+	const {selected, dateRange: {from, to}} = state.filters;
+
 	const filtratedArticles = state.articles.filter(article => {
-		return(!selected.length || selected.includes(article.id))
+		const published = Date.parse(article.date);
+		return(!selected.length || selected.includes(article.id))&&
+			(!from || !to || (published > from && published < to))
 	});
 	return {
 		articles: filtratedArticles

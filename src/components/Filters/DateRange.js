@@ -27,7 +27,6 @@ class DateRange extends Component {
 				<DayPicker numberOfMonths={2}
 						   selectedDays={[from, {from, to}]}
 						   onDayClick={this.handleDayClick}
-						   fixedWeeks
 				/>
 			</div>
 		);
