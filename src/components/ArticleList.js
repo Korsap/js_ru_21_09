@@ -12,6 +12,14 @@ class ArticleList extends Accordion {
 		}
 	}
 
+	static defaultProps = {
+    	articles: []
+	};
+
+    static  propTypes ={
+    	articles: PropTypes.array.isRequired
+	};
+
 
     render() {
         const {articles} = this.props;
@@ -23,28 +31,19 @@ class ArticleList extends Accordion {
                      isOpen={article.id === this.state.openItemId}
                      onButtonClick={this.toggleOpenItemMemoized(article.id)}
             />
-        </li>)
+        </li>);
         return (
             <ul>
                 {articleElements}
             </ul>
-        )
+        );
     }
 
     componentDidCatch(error, info) {
-        console.log('---', 123, error, info)
-        this.setState({ error })
+        console.log('---', 123, error, info);
+        this.setState({ error });
     }
 }
-
-
-ArticleList.defaultProps = {
-    articles: []
-};
-
-ArticleList.propTypes = {
-    articles: PropTypes.array.isRequired
-};
 
 function mapStateToProps(state) {
 	const selected = state.filters.selected;
