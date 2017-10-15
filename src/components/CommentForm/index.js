@@ -13,12 +13,18 @@ class CommentForm extends Component {
     render() {
         return (
             <form onSubmit = {this.handleSubmit}>
-                user: <input value = {this.state.user}
+                <strong>user:</strong>
+				<br/>
+				<input value = {this.state.user}
                              onChange = {this.handleChange('user')}
                              className = {this.getClassName('user')} />
-                comment: <textarea value = {this.state.text}
+                <br/>
+                <strong>comment:</strong>
+				<br/>
+				<textarea value = {this.state.text}
                                 onChange = {this.handleChange('text')}
                                 className = {this.getClassName('text')} />
+				<br/>
                 <input type = "submit" value = "submit" disabled = {!this.isValidForm()}/>
             </form>
         )
