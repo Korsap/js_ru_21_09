@@ -5,9 +5,10 @@ import Accordion from './Accordion';
 import {connect} from 'react-redux';
 
 class ArticleList extends Accordion {
-    constructor() {
-    	super();
-		super.state = {
+    constructor(props) {
+    	super(props);
+		this.state = {
+			...this.state,
 			error: null
 		}
 	}
