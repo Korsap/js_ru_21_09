@@ -1,5 +1,7 @@
-import React, { Component } from 'react'
-import './style.css'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { addComment } from "../../AC/index";
+import './style.css';
 
 class CommentForm extends Component {
     static propTypes = {
@@ -64,4 +66,11 @@ const limits = {
     }
 }
 
-export default CommentForm
+function mapStateToProps (state) {
+	return {
+		comment: state.comments
+	}
+
+}
+
+export default connect(mapStateToProps, { addComment })(CommentForm)

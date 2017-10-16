@@ -1,12 +1,13 @@
-import {createStore, applyMiddleware} from 'redux'
-import reducer from '../reducer'
-import logger from '../middlewares/logger'
+import {createStore, applyMiddleware} from 'redux';
+import reducer from '../reducer';
+import logger from '../middlewares/logger';
+import idGenerator from '../middlewares/idGenerator';
 
-const enchancer = applyMiddleware(logger)
+const enchancer = applyMiddleware(logger, idGenerator);
 
-const store = createStore(reducer, enchancer)
+const store = createStore(reducer, enchancer);
 
 //dev only
-window.store = store
+window.store = store;
 
-export default store
+export default store;
