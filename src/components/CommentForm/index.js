@@ -10,7 +10,7 @@ class CommentForm extends Component {
     state = {
         user: '',
         text: ''
-    }
+    };
 
     render() {
         return (
@@ -29,12 +29,12 @@ class CommentForm extends Component {
 				<br/>
                 <input type = "submit" value = "submit" disabled = {!this.isValidForm()}/>
             </form>
-        )
+        );
     }
 
     handleSubmit = ev => {
         ev.preventDefault();
-		this.props.addComment(this.state);
+		this.props.addComment(this.state, this.props.articleId);
         this.setState({
 			user: '',
 			text: ''
@@ -42,19 +42,19 @@ class CommentForm extends Component {
 
     };
 
-    isValidForm = () => ['user', 'text'].every(this.isValidField)
+    isValidForm = () => ['user', 'text'].every(this.isValidField);
 
-    isValidField = type => this.state[type].length >= limits[type].min
+    isValidField = type => this.state[type].length >= limits[type].min;
 
-    getClassName = type => this.isValidField(type) ? '' : 'form-input__error'
+    getClassName = type => this.isValidField(type) ? '' : 'form-input__error';
 
     handleChange = type => ev => {
-        const {value} = ev.target
-        if (value.length > limits[type].max) return
+        const {value} = ev.target;
+        if (value.length > limits[type].max) return;
         this.setState({
             [type]: value
-        })
-    }
+        });
+    };
 }
 
 const limits = {
@@ -66,6 +66,12 @@ const limits = {
         min: 10,
         max: 50
     }
-}
+};
 
-export default connect(null, { addComment })(CommentForm)
+/*function mapStateToProps(state) {
+	return {
+		newState: state.articles[id]
+	}
+}*/
+
+export default connect(null, { addComment })(CommentForm);

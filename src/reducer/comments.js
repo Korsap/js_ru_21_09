@@ -10,9 +10,9 @@ export default (commentsState = commentsMap, action) => {
 
     switch (type) {
 		case ADD_COMMENT: {
-        	return { ...commentsState, comment: payload.comment };
+        	return { ...commentsState, [payload.comment.id]: payload.comment };
 		}
+		default:
+			return commentsState;
     }
-
-    return commentsState
 }
