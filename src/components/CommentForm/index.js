@@ -33,12 +33,14 @@ class CommentForm extends Component {
     }
 
     handleSubmit = ev => {
-        ev.preventDefault()
+        ev.preventDefault();
+		this.props.addComment(this.state);
         this.setState({
-            user: '',
-            text: ''
-        })
-    }
+			user: '',
+			text: ''
+		});
+
+    };
 
     isValidForm = () => ['user', 'text'].every(this.isValidField)
 
@@ -66,11 +68,4 @@ const limits = {
     }
 }
 
-function mapStateToProps (state) {
-	return {
-		comment: state.comments
-	}
-
-}
-
-export default connect(mapStateToProps, { addComment })(CommentForm)
+export default connect(null, { addComment })(CommentForm)

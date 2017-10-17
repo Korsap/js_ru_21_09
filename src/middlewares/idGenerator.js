@@ -9,8 +9,10 @@ let generateUUID = () => {
 
 
 export default store => next => action => {
+	let { payload } = action;
 	if (action.type === ADD_COMMENT) {
 		let newCommentID = generateUUID();
+		payload.id = newCommentID; //нужно передавать в объект {comment}
 		console.log('--- new ID:', newCommentID);
 		next(action);
 	}
