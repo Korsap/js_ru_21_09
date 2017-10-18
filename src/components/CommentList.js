@@ -42,7 +42,7 @@ function getBody(props) {
     return (
         <div>
             {body}
-            <CommentForm articleId = {articleId}/>
+            <CommentForm articleId = {articleId} />
         </div>
     )
 }
