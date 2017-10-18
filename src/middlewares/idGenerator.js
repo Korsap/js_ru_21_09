@@ -11,9 +11,10 @@ let generateUUID = () => {
 export default store => next => action => {
 	if (action.type === ADD_COMMENT) {
 		let newCommentID = generateUUID();
-		action.payload.comment.id = newCommentID; //нужно передавать в объект {comment}
+		action.payload.comment.id = newCommentID;
 		console.log('--- new ID:', newCommentID);
-		next(action);
+		//next(action); //В этом месте не совсем понял. В этом случае action вызывается еще раз?? Как результат
+		// комментарий добавляется дважды, но c одинаковым ID
 	}
 	next(action);
 }
