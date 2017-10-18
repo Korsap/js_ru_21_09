@@ -11,12 +11,11 @@ export default (articleState = articlesMap, action) => {
         case DELETE_ARTICLE:
             return articleState.filter(article => article.id !== payload.id);
 		case ADD_COMMENT: {
-			///разобраться с этим куском говнокода
-			let commentsId = articleState[payload.articleId].comments;
-			commentsId.push(payload.comment.id);
-			console.log("!!!!!!!!!", commentsId);
-			//commentsId.push(payload.comment.id);
-			return {...articleState}
+			const {articleId, comment} = payload;
+			let currentArticle = {...articleState[articleId]};
+			currentArticle.comments.push(comment.id);
+			console.log("!!!!!!!!!", currentArticle);
+			return {...articleState, [articleId]: currentArticle}
 		}
     }
     return articleState;
