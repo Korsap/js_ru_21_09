@@ -1,6 +1,6 @@
 import { DELETE_ARTICLE, ADD_COMMENT, LOAD_ALL_ARTICLES, LOAD_ARTICLE, SUCCESS, START } from '../constants'
-import {arrToMap} from './utils'
-import {Record, OrderedMap} from 'immutable'
+import {arrToMap, ReducerRecord} from './utils'
+import {Record} from 'immutable'
 
 const ArticleRecord = Record({
     id: null,
@@ -11,11 +11,7 @@ const ArticleRecord = Record({
     loading: false
 })
 
-const ReducerRecord = Record({
-    entities: new OrderedMap({}),
-    loading: false,
-    loaded: false
-})
+
 
 export default (state = new ReducerRecord(), action) => {
     const { type, payload, randomId, response } = action

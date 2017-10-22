@@ -3,6 +3,8 @@ import Comment from './Comment'
 import PropTypes from 'prop-types'
 import toggleOpen from '../decorators/toggleOpen'
 import CommentForm from './CommentForm'
+import {connect} from 'react-redux'
+import {loadComments} from "../AC/index";
 
 class CommentList extends Component {
     static defaultProps = {
@@ -10,6 +12,10 @@ class CommentList extends Component {
         isOpen: PropTypes.bool,
         toggleOpen: PropTypes.func
     }
+
+	componentWillReceiveProps({isOpen, loadComments}) {
+    	if(!this.props.isOpen && isOpen ) loadComments()
+	}
 
     render() {
         const {isOpen, toggleOpen} = this.props
@@ -41,5 +47,13 @@ class CommentList extends Component {
     }
 }
 
+function mapStateToProps(state) {
+	console.log("&&&", state);
 
-export default toggleOpen(CommentList)
+	return {
+
+	}
+}
+
+
+export default connect(mapStateToProps, { loadComments })(toggleOpen(CommentList))
