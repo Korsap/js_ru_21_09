@@ -13,19 +13,16 @@ export default (state = new ReducerRecord(), action) => {
     const { type, payload, randomId } = action
 
     switch (type) {
-		case LOAD_COMMENTS + START:
-			return state.set('loading', true)
-		case LOAD_COMMENTS + SUCCESS:
-			return state.set('loading', false)
-				.set('loaded', true)
-				.setIn(['entities', payload.articleId, comments], new CommentRecord(payload.response))
-
         case ADD_COMMENT:
-            return state.set(randomId, {
-                ...payload.comment,
-                id: randomId
-            })
-    }
+            return state.setIn(['entities', randomId], new CommentRecord({
+				...payload.comment,
+				id: randomId
+			}))
+
+		case LOAD_COMMENTS + SUCCESS:
+		return state.mergeIn(['entities'], arrToMap(payload.response, CommentRecord))
+
+	}
 
     return state
 }

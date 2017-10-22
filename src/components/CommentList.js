@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import Comment from './Comment'
+import Loader from './Loader'
 import PropTypes from 'prop-types'
 import toggleOpen from '../decorators/toggleOpen'
 import CommentForm from './CommentForm'
@@ -13,8 +14,8 @@ class CommentList extends Component {
         toggleOpen: PropTypes.func
     }
 
-	componentWillReceiveProps({isOpen, loadComments}) {
-    	if(!this.props.isOpen && isOpen ) loadComments()
+	componentWillReceiveProps({isOpen, article, loadComments}) {
+    	if(!this.props.isOpen && isOpen && !article.commentsLoading && !article.commentsLoaded) loadComments(article.id)
 	}
 
     render() {
@@ -29,8 +30,10 @@ class CommentList extends Component {
     }
 
     getBody() {
-        const { article: {id, comments = []}, isOpen } = this.props
+        const { article: {id, comments = [], commentsLoaded, commentsLoading}, isOpen } = this.props
         if (!isOpen) return null
+		if(commentsLoading) return <Loader/>
+		if(commentsLoaded) return null
 
         const body = comments.length ? (
             <ul>
@@ -47,13 +50,6 @@ class CommentList extends Component {
     }
 }
 
-function mapStateToProps(state) {
-	console.log("&&&", state);
-
-	return {
-
-	}
-}
 
 
-export default connect(mapStateToProps, { loadComments })(toggleOpen(CommentList))
+export default connect(null, { loadComments })(toggleOpen(CommentList))

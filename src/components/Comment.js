@@ -4,11 +4,11 @@ import {connect} from 'react-redux'
 import {createCommentSelector} from '../selectors'
 
 
-function Comment({comment}) {
-    return (
-        <div>
-            {comment.text} <b>by {comment.user}</b>
-        </div>
+function Comment ({comment}) {
+	return (
+		<div>
+			{comment.text} <b>by {comment.user}</b>
+		</div>
     )
 }
 
