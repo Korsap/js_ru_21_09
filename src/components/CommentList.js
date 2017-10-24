@@ -33,7 +33,7 @@ class CommentList extends Component {
         const { article: {id, comments, commentsLoaded, commentsLoading}, isOpen } = this.props
         if (!isOpen) return null
 		if(commentsLoading) return <Loader/>
-		if(commentsLoaded) return null
+		if(!commentsLoaded) return null
 
         const body = comments.length ? (
             <ul>
