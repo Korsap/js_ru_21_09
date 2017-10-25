@@ -1,10 +1,12 @@
-import React, { Component } from 'react'
-import {Route} from 'react-router-dom'
-import CommentList from '../CommentList'
-import Comment from '../Comment'
+import React from 'react'
+import CommentPage from '../CommentPage'
 
-class CommentsPages extends Component {
+function CommentsPages ({match}) {
+		return <CommentPage page = {match.params.page}/>
+	}
 
-}
+
+CommentsPages.propTypes = {
+	}
 
 export default CommentsPages
