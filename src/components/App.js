@@ -1,26 +1,39 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import {Route, NavLink, Switch, Redirect} from 'react-router-dom'
+import {Route, Switch, Redirect} from 'react-router-dom'
 import ArticlesPage from './routes/ArticlesPage'
 import CommentsPage from './routes/CommentsPage'
 import Filters from './Filters'
 import Counter from './Counter'
 import Menu, {MenuItem} from './Menu'
+import dictionary from '../dictionary'
+import Localized from './Localized'
 
 class App extends Component {
     state = {
-        username: ''
+        username: '',
+		language: 'en'
     }
 
+	static propTypes = {
+		language: PropTypes.string
+	}
+
     static childContextTypes = {
-        user: PropTypes.string
+        user: PropTypes.string,
+		language: PropTypes.string,
+		dictionary: PropTypes.object
     }
 
     getChildContext() {
         return {
-            user: this.state.username
+            user: this.state.username,
+			language: this.state.language,
+			dictionary: dictionary[this.state.language]
         }
     }
+
+    changeLanguage = language => ev => this.setState({language})
 
     render() {
         const {username} = this.state
@@ -29,11 +42,15 @@ class App extends Component {
         return (
             <div>
                 <h1>App name</h1>
+				<ul>
+					<li onClick={this.changeLanguage('en')}>English</li>
+					<li onClick={this.changeLanguage('ru')}>Russian</li>
+				</ul>
                 <Menu>
-                    <MenuItem to = '/articles'>articles</MenuItem>
-                    <MenuItem to = '/filters'>filters</MenuItem>
-                    <MenuItem to = '/counter'>counter</MenuItem>
-                    <MenuItem to = '/comments/1'>comments</MenuItem>
+                    <MenuItem to = '/articles'><Localized>articles</Localized></MenuItem>
+                    <MenuItem to = '/filters'><Localized>filters</Localized></MenuItem>
+                    <MenuItem to = '/counter'><Localized>counter</Localized></MenuItem>
+                    <MenuItem to = '/comments/1'><Localized>comments</Localized></MenuItem>
                 </Menu>
                 User: <input type = 'text' value = {username} onChange = {this.handleUserChange}/>
                 <Switch>

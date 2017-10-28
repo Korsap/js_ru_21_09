@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {increment} from '../AC'
+import Localized from './Localized'
 
 class Counter extends Component {
     static propTypes = {
@@ -11,7 +12,7 @@ class Counter extends Component {
     render() {
         return (
             <div>
-                <h3>Count: {this.props.count} <button onClick = {this.handleIncrement}>Increment</button></h3>
+                <h3><Localized>Count</Localized>: {this.props.count} <button onClick = {this.handleIncrement}><Localized>Increment</Localized></button></h3>
             </div>
         )
     }

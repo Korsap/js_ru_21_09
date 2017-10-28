@@ -7,6 +7,7 @@ import {findDOMNode} from 'react-dom'
 import {connect} from 'react-redux'
 import {deleteArticle, loadArticle} from '../../AC'
 import './style.css'
+import Localized from '../Localized'
 
 class Article extends Component {
     static defaultProps = {
@@ -45,8 +46,8 @@ class Article extends Component {
             <div>
                 <h2 ref = {this.setHeaderRef}>
                     {article.title}
-                    <span onClick = {this.increment}>Clicked: {this.state.clicked} times</span>
-                    <button onClick = {this.handleDelete}>delete me</button>
+                    <span onClick = {this.increment}><Localized>Clicked</Localized>: {this.state.clicked} <Localized>times</Localized></span>
+                    <button onClick = {this.handleDelete}><Localized>delete me</Localized></button>
                 </h2>
                 <ReactCSSTransitionGroup
                     transitionName = 'article'

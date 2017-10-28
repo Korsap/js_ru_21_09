@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {addComment} from '../../AC'
 import './style.css'
+import Localized from '../Localized'
 
 class CommentForm extends Component {
     static propTypes = {
@@ -14,6 +15,7 @@ class CommentForm extends Component {
     }
 
     render() {
+		const text = 'submit';
         return (
             <form onSubmit = {this.handleSubmit}>
                 user: <input value = {this.state.user}
@@ -22,7 +24,7 @@ class CommentForm extends Component {
                 comment: <input value = {this.state.text}
                                 onChange = {this.handleChange('text')}
                                 className = {this.getClassName('text')} />
-                <input type = "submit" value = "submit"/>
+				<input type = "submit" value = {text}/>
             </form>
         )
     }

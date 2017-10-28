@@ -14,7 +14,7 @@ class Root extends Component {
         return (
             <Provider store = {this.props.store}>
                 <ConnectedRouter history = {history}>
-                    <App />
+					<App />
                 </ConnectedRouter>
             </Provider>
         )

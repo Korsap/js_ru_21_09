@@ -1,0 +1,53 @@
+export const en = {
+	'Main Menu': 'Main Menu',
+	'Article List': 'Article List',
+	'articles': 'articles',
+	'filters': 'filters',
+	'counter': 'counter',
+	'comments': 'comments',
+	'Select some article': 'Select some article',
+	'Loading...': 'Loading...',
+	'delete me': 'delete me',
+	'hide comments': 'hide comments',
+	'show comments': 'show comments',
+	'submit': 'submit',
+	'No comments yet': 'No comments yet',
+	'Count': 'Count',
+	'Increment': 'Increment',
+	'User': 'User',
+	'Not Found': 'Not Found',
+	'No Articles': 'No Articles',
+	'New Article Page': 'New Article Page',
+	'Clicked': 'Clicked',
+	'times': 'times',
+	'user': 'user',
+	'comment': 'comment'
+}
+
+export const ru = {
+	'Main Menu': 'Главное меню',
+	'Article List': 'Список статей',
+	'articles': 'статьи',
+	'filters': 'фильтры',
+	'counter': 'счетчик',
+	'comments': 'комментарии',
+	'Select some article': 'Выберите статью',
+	'Loading...': 'Загрузка...',
+	'delete me': 'удалить статью',
+	'hide comments': 'скрыть комментарии',
+	'show comments': 'показать комментарии',
+	'submit': 'отправить',
+	'No comments yet': 'Пока нет комментариев',
+	'Count': 'Счет',
+	'Increment': 'Увеличить',
+	'User': 'Пользователь',
+	'Not Found': 'Упс',
+	'No Articles': 'Нет статей',
+	'New Article Page': 'Новая статья',
+	'Clicked': 'Нажато',
+	'times': 'раз',
+	'user': 'пользователь',
+	'comment': 'комментарий'
+}
+
+export default {ru, en}

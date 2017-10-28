@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import {Route} from 'react-router-dom'
 import ArticleList from '../ArticleList'
 import Article from '../Article'
+import Localized from '../Localized'
 
 class ArticlesPage extends Component {
     static propTypes = {
@@ -12,7 +13,7 @@ class ArticlesPage extends Component {
         console.log('---', 2)
         return (
             <div>
-                <h3>Article List</h3>
+                <h3><Localized>Article List</Localized></h3>
                 <ArticleList />
                 <Route path = '/articles/:id' children = {this.getArticleView}/>
             </div>
@@ -20,7 +21,7 @@ class ArticlesPage extends Component {
     }
 
     getArticleView = ({ match }) => {
-        if (!match) return <h2>Select some article</h2>
+        if (!match) return <h2><Localized>Select some article</Localized></h2>
 
         return <Article isOpen id = {match.params.id} key = {match.params.id} />
     }
