@@ -21,8 +21,7 @@ class ArticleList extends Accordion {
 
 	static contextTypes = {
 		language: PropTypes.string,
-		dictionary: PropTypes.object,
-        weekdaysLong: PropTypes.array
+		dictionary: PropTypes.object
 	}
 
     componentDidMount() {

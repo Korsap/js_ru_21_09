@@ -11,10 +11,7 @@ class DateRange extends Component {
 
 	static contextTypes = {
 		language: PropTypes.string,
-		weekdaysLong: PropTypes.array,
-		weekdaysShort: PropTypes.array,
-		month: PropTypes.array,
-		firstDayOfWeek: PropTypes.number
+		dictionary: PropTypes.object
 	}
 
     handleDayClick = (day) => {
@@ -28,8 +25,8 @@ class DateRange extends Component {
 	}
 
     render() {
-		console.log("253", this.context)
         const { from, to } = this.props.range;
+        const { month, weekdaysLong, weekdaysShort, firstDayOfWeek } = this.context.dictionary;
         const selectedRange = from && to && `${from.toDateString()} - ${to.toDateString()}`
 		const selectedLocalRange = from && to && `${from.toLocaleDateString()} - ${to.toLocaleDateString()}`
         return (
@@ -37,11 +34,11 @@ class DateRange extends Component {
                 <DayPicker
                     selectedDays={ day => DateUtils.isDayInRange(day, { from, to }) }
                     onDayClick={ this.handleDayClick }
-					locale={this.context.language}
-					months={this.context.month}
-					weekdaysLong={this.context.weekdaysLong}
-					weekdaysShort={this.context.weekdaysShort}
-					firstDayOfWeek={this.context.firstDayOfWeek}
+					locale={ this.context.language }
+					months={ month }
+					weekdaysLong={ weekdaysLong }
+					weekdaysShort={ weekdaysShort }
+					firstDayOfWeek={ firstDayOfWeek }
                 />
 
 				{this.getSelectedRange(selectedRange, selectedLocalRange)}

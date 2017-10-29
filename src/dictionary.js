@@ -53,11 +53,9 @@ export const ru = {
 	'comment': 'комментарий',
 	'creation date': 'дата создания',
 	'English': 'Английский',
-	'Russian': 'Русский'
-}
+	'Russian': 'Русский',
 
-export const WEEKDAYS_LONG = {
-	ru: [
+	weekdaysLong: [
 		'Воскресенье',
 		'Понедельник',
 		'Вторник',
@@ -65,13 +63,11 @@ export const WEEKDAYS_LONG = {
 		'Четверг',
 		'Пятница',
 		'Суббота',
-	]
-};
-export const WEEKDAYS_SHORT = {
-	ru: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб']
-};
-export const MONTHS = {
-	ru: [
+	],
+
+	weekdaysShort: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
+
+	month: [
 		'Январь',
 		'Февраль',
 		'Март',
@@ -84,16 +80,9 @@ export const MONTHS = {
 		'Октябрь',
 		'Ноябрь',
 		'Декабрь',
-	]
-};
-export const FIRST_DAY_OF_WEEK = {
-	ru: 1
-};
+	],
 
-// Translate aria-labels
-export const LABELS = {
-	ru: { nextMonth: 'следующий месяц', previousMonth: 'предыдущий месяц' }
-};
+	firstDayOfWeek: 1
+}
 
-
-export default {ru, en, WEEKDAYS_LONG, WEEKDAYS_SHORT, MONTHS, FIRST_DAY_OF_WEEK}
+export default {ru, en}

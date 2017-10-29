@@ -22,22 +22,14 @@ class App extends Component {
     static childContextTypes = {
         user: PropTypes.string,
 		language: PropTypes.string,
-		dictionary: PropTypes.object,
-		weekdaysLong: PropTypes.array,
-		weekdaysShort: PropTypes.array,
-		month: PropTypes.array,
-		firstDayOfWeek: PropTypes.number
+		dictionary: PropTypes.object
     }
 
     getChildContext() {
         return {
             user: this.state.username,
 			language: this.state.language,
-			dictionary: dictionary[this.state.language],
-			weekdaysLong: dictionary.WEEKDAYS_LONG[this.state.language],
-			weekdaysShort: dictionary.WEEKDAYS_SHORT[this.state.language],
-			month: dictionary.MONTHS[this.state.language],
-			firstDayOfWeek: dictionary.FIRST_DAY_OF_WEEK[this.state.language]
+			dictionary: dictionary[this.state.language]
         }
     }
 
