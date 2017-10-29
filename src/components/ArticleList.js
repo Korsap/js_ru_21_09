@@ -21,7 +21,8 @@ class ArticleList extends Accordion {
 
 	static contextTypes = {
 		language: PropTypes.string,
-		dictionary: PropTypes.object
+		dictionary: PropTypes.object,
+        weekdaysLong: PropTypes.array
 	}
 
     componentDidMount() {
@@ -30,7 +31,7 @@ class ArticleList extends Accordion {
     }
 
     render() {
-        console.log('---', 'rerendering ArticleList', this.context)
+        console.log('---', 'rerendering ArticleList')
         const {articles, loading} = this.props
         if (loading) return <Loader />
         if (this.state.error) return <h2>Error: {this.state.error.message}</h2>

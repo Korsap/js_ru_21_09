@@ -57,7 +57,7 @@ class Article extends Component {
                 >
                     {this.getBody()}
                 </ReactCSSTransitionGroup>
-                <h3>creation date: {(new Date(article.date)).toDateString()}</h3>
+                <h3><Localized>creation date</Localized>: {(new Date(article.date)).toDateString()}</h3>
             </div>
         )
     }

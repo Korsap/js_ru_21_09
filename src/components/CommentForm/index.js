@@ -18,13 +18,13 @@ class CommentForm extends Component {
 		const text = 'submit';
         return (
             <form onSubmit = {this.handleSubmit}>
-                user: <input value = {this.state.user}
+                <Localized>user</Localized>: <input value = {this.state.user}
                              onChange = {this.handleChange('user')}
                              className = {this.getClassName('user')} />
-                comment: <input value = {this.state.text}
+                <Localized>comment</Localized>: <input value = {this.state.text}
                                 onChange = {this.handleChange('text')}
                                 className = {this.getClassName('text')} />
-				<input type = "submit" value = {text}/>
+				<input type = "submit" value = {text} disabled = {!this.isValidForm()}/>
             </form>
         )
     }
@@ -38,8 +38,11 @@ class CommentForm extends Component {
         })
     }
 
-    getClassName = type => this.state[type].length && this.state[type].length < limits[type].min
-        ? 'form-input__error' : ''
+	isValidForm = () => ['user', 'text'].every(this.isValidField)
+
+    isValidField = type => this.state[type].length >= limits[type].min
+
+    getClassName = type => this.isValidField(type) ? '' : 'form-input__error'
 
     handleChange = type => ev => {
         const {value} = ev.target

@@ -6,7 +6,7 @@ import CommentsPage from './routes/CommentsPage'
 import Filters from './Filters'
 import Counter from './Counter'
 import Menu, {MenuItem} from './Menu'
-import dictionary from '../dictionary'
+import dictionary, {WEEKDAYS_LONG} from '../dictionary'
 import Localized from './Localized'
 
 class App extends Component {
@@ -22,14 +22,22 @@ class App extends Component {
     static childContextTypes = {
         user: PropTypes.string,
 		language: PropTypes.string,
-		dictionary: PropTypes.object
+		dictionary: PropTypes.object,
+		weekdaysLong: PropTypes.array,
+		weekdaysShort: PropTypes.array,
+		month: PropTypes.array,
+		firstDayOfWeek: PropTypes.number
     }
 
     getChildContext() {
         return {
             user: this.state.username,
 			language: this.state.language,
-			dictionary: dictionary[this.state.language]
+			dictionary: dictionary[this.state.language],
+			weekdaysLong: dictionary.WEEKDAYS_LONG[this.state.language],
+			weekdaysShort: dictionary.WEEKDAYS_SHORT[this.state.language],
+			month: dictionary.MONTHS[this.state.language],
+			firstDayOfWeek: dictionary.FIRST_DAY_OF_WEEK[this.state.language]
         }
     }
 
@@ -43,8 +51,8 @@ class App extends Component {
             <div>
                 <h1>App name</h1>
 				<ul>
-					<li onClick={this.changeLanguage('en')}>English</li>
-					<li onClick={this.changeLanguage('ru')}>Russian</li>
+					<li><button onClick={this.changeLanguage('en')}><Localized>English</Localized></button></li>
+					<li><button onClick={this.changeLanguage('ru')}><Localized>Russian</Localized></button></li>
 				</ul>
                 <Menu>
                     <MenuItem to = '/articles'><Localized>articles</Localized></MenuItem>
@@ -52,7 +60,7 @@ class App extends Component {
                     <MenuItem to = '/counter'><Localized>counter</Localized></MenuItem>
                     <MenuItem to = '/comments/1'><Localized>comments</Localized></MenuItem>
                 </Menu>
-                User: <input type = 'text' value = {username} onChange = {this.handleUserChange}/>
+                <Localized>User</Localized>: <input type = 'text' value = {username} onChange = {this.handleUserChange}/>
                 <Switch>
                     <Redirect from = '/' exact to = '/articles'/>
                     <Route path = '/counter' component = {Counter} exact />
@@ -66,9 +74,9 @@ class App extends Component {
         )
     }
 
-    notFound = () => <h1>Not Found</h1>
+    notFound = () => <h1><Localized>Not Found</Localized></h1>
 
-    newArticlePage = () => <h1>New Article Page</h1>
+    newArticlePage = () => <h1><Localized>New Article Page</Localized></h1>
 
     handleUserChange = ev => {
         if (ev.target.value.length > 10) return this.setState({
