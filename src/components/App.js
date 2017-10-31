@@ -6,7 +6,7 @@ import CommentsPage from './routes/CommentsPage'
 import Filters from './Filters'
 import Counter from './Counter'
 import Menu, {MenuItem} from './Menu'
-import dictionary, {WEEKDAYS_LONG} from '../dictionary'
+import dictionary from '../dictionary'
 import Localized from './Localized'
 
 class App extends Component {
